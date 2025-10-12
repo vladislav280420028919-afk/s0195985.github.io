@@ -1,95 +1,72 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор стоимости заказа</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .calculator {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-        input, select, button {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        #result {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e9f7ef;
-            border: 2px solid #28a745;
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            display: none;
-        }
-        .error {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="calculator">
-        <h1>Калькулятор стоимости заказа</h1>
+document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
+    
+    const productSelect = document.getElementById('product');
+    const quantityInput = document.getElementById('quantity');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const resultDiv = document.getElementById('result');
+    const errorDiv = document.getElementById('quantityError');
+    
+    const numberRegex = /^\d+$/;
+    
+    function validateInput(value) {
+        return numberRegex.test(value) && parseInt(value, 10) > 0;
+    }
+    
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }
+    
+    function calculateTotal() {
         
-        <div class="form-group">
-            <label for="product">Выберите товар:</label>
-            <select id="product">
-                <option value="1500">Смартфон - 1 500 руб.</option>
-                <option value="800">Наушники - 800 руб.</option>
-                <option value="2500">Планшет - 2 500 руб.</option>
-                <option value="500">Чехол для телефона - 500 руб.</option>
-                <option value="1200">Power Bank - 1 200 руб.</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="quantity">Количество товара:</label>
-            <input type="text" id="quantity" value="1">
-            <div id="quantityError" class="error">Пожалуйста, введите корректное количество (только цифры)</div>
-        </div>
-
-        <button id="calculateBtn">Рассчитать стоимость</button>
-
-        <div id="result"></div>
-    </div>
-
-    <script src="calculator.js" defer></script>
-</body>
-</html>
+        errorDiv.style.display = 'none';
+        resultDiv.style.display = 'none';
+        
+        
+        const price = parseFloat(productSelect.value);
+        const quantityValue = quantityInput.value.trim();
+        
+        
+        if (!validateInput(quantityValue)) {
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        const quantity = parseInt(quantityValue, 10);
+        
+        
+        const total = price * quantity;
+        
+        const productName = productSelect.options[productSelect.selectedIndex].text.split(' - ')[0];
+        
+        const formattedPrice = formatNumber(price);
+        const formattedTotal = formatNumber(total);
+        
+        resultDiv.innerHTML = `
+            <strong>Результат расчета:</strong><br>
+            Товар: ${productName}<br>
+            Цена: ${formattedPrice} руб.<br>
+            Количество: ${quantity} шт.<br>
+            <strong>Общая стоимость: ${formattedTotal} руб.</strong>
+        `;
+        resultDiv.style.display = 'block';
+    }
+    
+    calculateBtn.addEventListener('click', calculateTotal);
+    
+    quantityInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            calculateTotal();
+        }
+    });
+    
+    quantityInput.addEventListener('input', function() {
+        const value = this.value.trim();
+        
+        if (!validateInput(value)) {
+            errorDiv.style.display = 'block';
+        } else {
+            errorDiv.style.display = 'none';
+        }
+    });
+});
