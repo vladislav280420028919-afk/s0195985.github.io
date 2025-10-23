@@ -1,79 +1,272 @@
 *{
-	margin:0;
+    margin:0;
     padding: 0;
     font-family: 'Century Gothic', cursive;
 }
-#logo{
-	height: 100px;
-	width: 100px;
-	margin: 30px;
-	float: left;
-}
-header{
-	background-color: #671946;
-	width: 100%;
-	height: 144;
-	top: 0;
-	
+
+/* Mobile First стили */
+body{
+    background-repeat: repeat;
+    background-size: contain;
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-footer{
-	width: 100%;
-	height: 70px;
-	background-color: #671946;
+/* Шапка для мобильных */
+header{
+    background-color: #671946;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    margin-bottom: 20px;
+    order: 1;
+}
+
+/* Создаем контейнер для лого и названия В ОДНУ СТРОКУ */
+.header-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+#logo{
+    height: 60px;
+    width: 60px;
+    margin-left: 0;
+    float: none;
+    flex-shrink: 0; /* Запрещаем сжатие логотипа */
+}
+
+.name{
+    text-align: left;
+    color: white;
+    margin-left: 0;
+    white-space: nowrap;
+    font-size: 18px;
+    flex-shrink: 0; /* Запрещаем сжатие названия */
+}
+
+/* Навигация для мобильных - ПОД лого и названием */
+nav.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+nav.menu a{
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    white-space: nowrap;
+    background-color: #6385EF;
+    text-align: center;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Остальные стили остаются без изменений */
+.tablic{
+    margin: 20px auto;
+    max-width: 100%;
+    width: 100%;
+    background-color: #671946;
+    order: 2;
+    border-collapse: collapse;
+}
+
+.tablic th, .tablic td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
 }
 
 .chet{
-	background: #a1c3d5;
+    background: #a1c3d5;
 }
 
-th {
-   border: 1px solid grey;
-}
-
-td {
-   border: 1px solid grey;
+.chet td {
+    color: #333;
 }
 
 .ssulk{
-	margin-top: 25px;
-	max-width: 960px;
-	margin: auto;
-	width: 80%;
-	margin-bottom: 30px;
-	margin-top: 52px;
-	background-color: #671946;
-
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+    background-color: #671946;
+    order: 3;
+    box-sizing: border-box;
 }
 
-.tablic{
-	margin: auto;
-	margin-bottom: 30px;
-	margin-top: 52px;
-	max-width: 960px;
-	background-color: #671946;
+.ssulk ul {
+    list-style-type: none;
 }
 
-body{
-	background-repeat: repeat;
-	background-size: contain;
-	width: 100vw;
-	height: 100%;
+.ssulk li {
+    margin-bottom: 10px;
+    color: white;
 }
 
-#menu{
-	float: right;
+.ssulk a {
+    color: white;
+    text-decoration: none;
 }
 
-nav{
-	float: right;
-	display: flex;
+.ssulk a:hover {
+    text-decoration: underline;
 }
 
 .tablu{
-	max-width: 500px;
-	margin: auto;
-	margin-bottom: 30px;
-	margin-top: 52px;
-	background-color: #671946;
+    max-width: 100%;
+    margin: 20px auto;
+    background-color: #671946;
+    padding: 20px;
+    color: white;
+    order: 4;
+    box-sizing: border-box;
+}
+
+.tablu h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tablu label {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.tablu input, .tablu select, .tablu textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.tablu input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+.tablu input[type="submit"] {
+    background-color: #6385EF;
+    color: white;
+    cursor: pointer;
+    padding: 12px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+footer{
+    width: 100%;
+    height: auto;
+    background-color: #671946;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    order: 5;
+}
+
+/* Планшеты (768px и выше) */
+@media (min-width: 768px) {
+    body {
+        display: block;
+    }
+    
+    header{
+        flex-direction: row;
+        justify-content: space-between;
+        height: 144px;
+        margin-bottom: 50px;
+        padding: 15px 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .header-top {
+        width: auto;
+        margin-bottom: 0;
+    }
+    
+    #logo{
+        height: 100px;
+        width: 100px;
+        margin-left: 30px;
+    }
+    
+    .name{
+        font-size: inherit;
+    }
+    
+    nav.menu{
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: auto;
+        flex-direction: row;
+        gap: 25px;
+    }
+    
+    nav.menu a{
+        width: auto;
+        padding: 15px 25px;
+    }
+    
+    .tablic{
+        margin: auto;
+        margin-bottom: 30px;
+        margin-top: 100px;
+        max-width: 960px;
+        width: 100%;
+        order: 0;
+    }
+    
+    .ssulk{
+        padding-left: 35px;
+        margin-top: auto;
+        max-width: 960px;
+        margin: auto;
+        width: 80%;
+        margin-bottom: 30px;
+        margin-top: 52px;
+        order: 0;
+    }
+    
+    .tablu{
+        max-width: 500px;
+        margin: auto;
+        margin-bottom: 30px;
+        margin-top: 52px;
+        order: 0;
+    }
+}
+
+/* Десктопы (1024px и выше) */
+@media (min-width: 1024px) {
+    .ssulk{
+        max-width: 960px;
+        width: 80%;
+    }
+    
+    .tablic{
+        max-width: 960px;
+        width: 100%;
+    }
 }
