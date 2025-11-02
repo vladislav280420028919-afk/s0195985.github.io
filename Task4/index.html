@@ -104,7 +104,7 @@
             text-decoration: underline;
         }
         
-        /* Стили для таблицы */
+        /* Стили для таблицы - ИСПРАВЛЕНЫ ЦВЕТА */
         .tablic {
             margin: 20px auto;
             max-width: 100%;
@@ -121,12 +121,29 @@
             color: white;
         }
         
-        .chet {
-            background: #a1c3d5;
+        /* Четные строки - голубой фон с темным текстом */
+        .tablic tr.chet {
+            background-color: #a1c3d5 !important;
         }
         
-        .chet td {
-            color: #333;
+        .tablic tr.chet td {
+            color: #333 !important;
+            font-weight: 500;
+        }
+        
+        /* Нечетные строки - остаются с фиолетовым фоном и белым текстом */
+        .tablic tr:not(.chet) {
+            background-color: #671946;
+        }
+        
+        .tablic tr:not(.chet) td {
+            color: white;
+        }
+        
+        /* Заголовок таблицы */
+        .tablic tr.chet th {
+            background-color: #5a1740 !important;
+            color: white !important;
         }
         
         /* Стили для формы */
@@ -170,6 +187,8 @@
             padding: 12px;
             margin-top: 15px;
             width: 100%;
+            border: none;
+            border-radius: 4px;
         }
         
         /* Footer */
@@ -270,6 +289,8 @@
         /* Bootstrap улучшения */
         .table-responsive {
             overflow-x: auto;
+            margin: 20px auto;
+            max-width: 100%;
         }
         
         @media (max-width: 767px) {
@@ -280,6 +301,12 @@
             .tablic th, .tablic td {
                 padding: 6px 4px;
             }
+        }
+        
+        /* Улучшения для изображений */
+        .ssulk img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
