@@ -1,0 +1,75 @@
+*{
+    margin:0;
+    padding: 0;
+    font-family: 'Century Gothic', cursive;
+}
+
+body{
+    background-repeat: repeat;
+    background-size: contain;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Кастомные цвета для Bootstrap */
+.bg-primary {
+    background-color: #671946 !important;
+}
+
+.btn-info {
+    background-color: #6385EF !important;
+    border-color: #6385EF !important;
+}
+
+/* Стили для таблицы */
+.tablic{
+    background-color: #671946;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tablic th, .tablic td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+}
+
+.chet{
+    background: #a1c3d5;
+}
+
+.chet td {
+    color: #333;
+}
+
+/* Стили для блока ссылок */
+.ssulk{
+    background-color: #671946;
+    border-radius: 0.375rem;
+}
+
+.ssulk a:hover {
+    text-decoration: underline !important;
+}
+
+/* Стили для формы */
+.tablu{
+    background-color: #671946;
+    border-radius: 0.375rem;
+}
+
+/* Адаптивность для логотипа */
+#logo {
+    max-height: 60px;
+    width: auto;
+}
+
+/* Медиа-запросы для планшетов */
+@media (min-width: 768px) {
+    #logo {
+        max-height: 100px;
+    }
+}
