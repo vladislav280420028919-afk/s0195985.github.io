@@ -79,7 +79,7 @@ body{
 .custom-table th, 
 .custom-table td {
     border: 1px solid white;
-    padding: 8px;
+    padding: 12px 8px;
     text-align: center;
     vertical-align: middle;
 }
@@ -138,8 +138,8 @@ body{
     
     .custom-table th, 
     .custom-table td {
-        padding: 6px 4px;
-        font-size: 0.8rem;
+        padding: 8px 4px;
+        font-size: 0.85rem;
     }
     
     .ssulk,
@@ -156,8 +156,7 @@ body{
     
     .custom-table th, 
     .custom-table td {
-        padding: 7px 6px;
-        font-size: 0.9rem;
+        padding: 10px 6px;
     }
 }
 
@@ -175,10 +174,10 @@ body{
         flex: 0 1 auto;
     }
     
-    .custom-table th, 
-    .custom-table td {
-        padding: 12px 8px;
-        font-size: 1rem;
+    /* Центрируем форму на десктопах */
+    .custom-form {
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
