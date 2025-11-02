@@ -12,64 +12,211 @@ body{
     flex-direction: column;
 }
 
-/* Кастомные цвета для Bootstrap */
-.bg-primary {
+/* Кастомные цвета */
+.bg-custom-primary {
     background-color: #671946 !important;
 }
 
-.btn-info {
+.btn-custom-info {
     background-color: #6385EF !important;
     border-color: #6385EF !important;
+    color: white !important;
 }
 
-/* Стили для таблицы */
-.tablic{
-    background-color: #671946;
-    border-collapse: collapse;
-    width: 100%;
+.btn-custom-info:hover {
+    background-color: #5a7ae0 !important;
+    border-color: #5a7ae0 !important;
 }
 
-.tablic th, .tablic td {
-    border: 1px solid white;
-    padding: 8px;
-    text-align: center;
-    font-size: 14px;
-    color: white;
+/* Стили для header */
+.logo-img {
+    max-height: 60px;
+    width: auto;
 }
 
-.chet{
-    background: #a1c3d5;
+.site-title {
+    font-size: 1.5rem;
+    white-space: nowrap;
 }
 
-.chet td {
-    color: #333;
+.nav-btn {
+    flex: 1;
+    min-width: 120px;
 }
 
 /* Стили для блока ссылок */
-.ssulk{
+.ssulk {
     background-color: #671946;
     border-radius: 0.375rem;
 }
 
 .ssulk a:hover {
     text-decoration: underline !important;
+    color: #a1c3d5 !important;
+}
+
+.custom-image {
+    max-height: 150px;
+    width: auto;
+    border-radius: 4px;
+}
+
+/* Стили для таблицы */
+.table-container {
+    border-radius: 0.375rem;
+    overflow: hidden;
+    background-color: #671946;
+}
+
+.custom-table {
+    background-color: #671946;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 0;
+    color: white;
+}
+
+.custom-table th, 
+.custom-table td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.custom-table th {
+    background-color: #5a1740;
+    font-weight: bold;
+}
+
+.table-row-even {
+    background: #a1c3d5 !important;
+}
+
+.table-row-even td {
+    color: #333 !important;
+    font-weight: 500;
 }
 
 /* Стили для формы */
-.tablu{
+.custom-form {
     background-color: #671946;
     border-radius: 0.375rem;
 }
 
-/* Адаптивность для логотипа */
-#logo {
-    max-height: 60px;
-    width: auto;
+.custom-form .form-control,
+.custom-form .form-select {
+    border: 1px solid #8a2d5f;
+    background-color: white;
+}
+
+.custom-form .form-control:focus,
+.custom-form .form-select:focus {
+    border-color: #6385EF;
+    box-shadow: 0 0 0 0.2rem rgba(99, 133, 239, 0.25);
+}
+
+.custom-form .form-check-input:checked {
+    background-color: #6385EF;
+    border-color: #6385EF;
+}
+
+/* Медиа-запросы для мобильных */
+@media (max-width: 767.98px) {
+    .logo-img {
+        max-height: 50px;
+    }
+    
+    .site-title {
+        font-size: 1.25rem;
+    }
+    
+    .nav-btn {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .custom-table th, 
+    .custom-table td {
+        padding: 6px 4px;
+        font-size: 0.8rem;
+    }
+    
+    .ssulk,
+    .custom-form {
+        padding: 1rem !important;
+    }
 }
 
 /* Медиа-запросы для планшетов */
-@media (min-width: 768px) {
-    #logo {
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .logo-img {
+        max-height: 80px;
+    }
+    
+    .custom-table th, 
+    .custom-table td {
+        padding: 7px 6px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Медиа-запросы для десктопов */
+@media (min-width: 992px) {
+    .logo-img {
         max-height: 100px;
     }
+    
+    .site-title {
+        font-size: 1.75rem;
+    }
+    
+    .nav-btn {
+        flex: 0 1 auto;
+    }
+    
+    .custom-table th, 
+    .custom-table td {
+        padding: 12px 8px;
+        font-size: 1rem;
+    }
+}
+
+/* Улучшения для формы на мобильных */
+@media (max-width: 575.98px) {
+    .custom-form .form-check-inline {
+        display: block;
+        margin-right: 0 !important;
+        margin-bottom: 0.5rem;
+    }
+    
+    .custom-form select[multiple] {
+        min-height: 120px;
+    }
+}
+
+/* Плавные переходы */
+.nav-btn,
+.btn-custom-info,
+.ssulk a {
+    transition: all 0.3s ease;
+}
+
+/* Улучшения доступности */
+@media (prefers-reduced-motion: reduce) {
+    .nav-btn,
+    .btn-custom-info,
+    .ssulk a {
+        transition: none;
+    }
+}
+
+/* Подсветка для фокуса */
+a:focus,
+.btn:focus,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    outline: 2px solid #6385EF;
+    outline-offset: 2px;
 }
