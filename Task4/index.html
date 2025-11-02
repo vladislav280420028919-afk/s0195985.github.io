@@ -202,7 +202,43 @@
             margin-top: auto;
         }
         
-        /* Адаптивность для планшетов и десктопов */
+        /* Bootstrap улучшения */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        
+        /* Улучшения для изображений */
+        .ssulk img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* МОБИЛЬНАЯ ВЕРСИЯ - измененный порядок */
+        @media (max-width: 767px) {
+            .mobile-order-1 {
+                order: 1;
+            }
+            
+            .mobile-order-2 {
+                order: 2;
+            }
+            
+            .mobile-order-3 {
+                order: 3;
+            }
+            
+            .tablic {
+                font-size: 0.8rem;
+            }
+            
+            .tablic th, .tablic td {
+                padding: 6px 4px;
+            }
+        }
+        
+        /* ПЛАНШЕТЫ И ДЕСКТОПЫ - оригинальный порядок */
         @media (min-width: 768px) {
             body {
                 display: block;
@@ -271,6 +307,13 @@
                 margin: auto;
                 margin-bottom: 30px;
             }
+            
+            /* Сбрасываем порядок для десктопов */
+            .mobile-order-1,
+            .mobile-order-2,
+            .mobile-order-3 {
+                order: 0;
+            }
         }
         
         /* Десктопы (1024px и выше) */
@@ -284,29 +327,6 @@
                 max-width: 960px;
                 width: 100%;
             }
-        }
-        
-        /* Bootstrap улучшения */
-        .table-responsive {
-            overflow-x: auto;
-            margin: 20px auto;
-            max-width: 100%;
-        }
-        
-        @media (max-width: 767px) {
-            .tablic {
-                font-size: 0.8rem;
-            }
-            
-            .tablic th, .tablic td {
-                padding: 6px 4px;
-            }
-        }
-        
-        /* Улучшения для изображений */
-        .ssulk img {
-            max-width: 100%;
-            height: auto;
         }
     </style>
 </head>
@@ -325,50 +345,10 @@
         </nav>
     </header>
 
-    <!-- Основной контент в оригинальном порядке -->
-    <main class="container-fluid">
-        <!-- 1. Список ссылок -->
-        <div class="ssulk">
-            <ul>
-                <li><a href="https://www.kubsu.ru/">KubGU</a></li>
-                <li><a href="http://www.kubsu.ru/" id="suda">KubGU2</a></li>
-                <li><a href="https://www.kubsu.ru/"><img src="image.jpg"></a></li>
-                <li><a href="inside.html">Внутренняя ссылка</a></li>
-                <li><a href="Task1.html">Сам сам</a></li>
-                <li><a href="#suda">Перенос на голову</a></li>
-                <li><a href="https://www.kubsu.ru/?askdjlkjl_123_JJHJHHJH">Пупупу</a></li>
-                <li><a href="https://www.kubsu.ru/?id88005553535">ID</a></li>
-                <li><a href="./inside.html">Относ1</a></li>
-                <li><a href="./about/what.html">Относ2</a></li>
-                <li><a href="../NZT.html">Назад в будущее</a></li>
-                <li><a href="../../NZT48.html">Жёстко Назад в будущее</a></li>
-                <li>Вот где-то тут должна быть ссылка, вот-вот будет, и... <a href="https://www.kubsu.ru/">Вооооот она!</a>Ураааа</li>
-                <li><a href="https://ru.wikipedia.org/wiki/HTML#Браузеры">Ссылка на фрагмент внешнего сайта</a></li>
-                <li>
-                    <img src="Chel.png" usemap="#totoro">
-                    <map name="totoro">
-                        <area shape="rect" coords="400,300,500,500" href="https://www.kubsu.ru/">
-                        <area shape="circle" coords="50,50,50" href="https://www.kubsu.ru/">  
-                    </map>
-                </li>
-                <li><a href="">Пустая</a></li>
-                <li><a>Совсем пустая</a></li>
-                <li><a href="https://www.kubsu.ru/" rel="nofollow">Нет поисковик1</a></li>
-                <li><a href="https://www.kubsu.ru/" rel="noindex">Нет поисковик2</a></li>
-                <li><a href=""></a></li>
-                
-                <ol>
-                    <li><a href="https://www.kubsu.ru/" title="1">Граф</a></li>
-                    <li><a href="https://www.kubsu.ru/" title="2">Монте</a></li>
-                    <li><a href="https://www.kubsu.ru/" title="3">Криста</a></li>
-                </ol>
-                
-                <li><a href="ftp://username:password@ftp.example.com/path/to/file.zip">Скачать файл</a></li>
-            </ul>
-        </div>
-
-        <!-- 2. Таблица -->
-        <div class="table-responsive">
+    <!-- Основной контент с измененным порядком для мобильных -->
+    <main class="container-fluid d-flex flex-column">
+        <!-- 1. ТАБЛИЦА (первая на мобильных) -->
+        <div class="table-responsive mobile-order-1">
             <table class="tablic">
                 <tr class="chet">
                     <th>Первый</th>
@@ -421,8 +401,48 @@
             </table>
         </div>
 
-        <!-- 3. Форма -->
-        <form action="" method="POST" class="tablu">
+        <!-- 2. СПИСОК ССЫЛОК (вторая на мобильных) -->
+        <div class="ssulk mobile-order-2">
+            <ul>
+                <li><a href="https://www.kubsu.ru/">KubGU</a></li>
+                <li><a href="http://www.kubsu.ru/" id="suda">KubGU2</a></li>
+                <li><a href="https://www.kubsu.ru/"><img src="image.jpg"></a></li>
+                <li><a href="inside.html">Внутренняя ссылка</a></li>
+                <li><a href="Task1.html">Сам сам</a></li>
+                <li><a href="#suda">Перенос на голову</a></li>
+                <li><a href="https://www.kubsu.ru/?askdjlkjl_123_JJHJHHJH">Пупупу</a></li>
+                <li><a href="https://www.kubsu.ru/?id88005553535">ID</a></li>
+                <li><a href="./inside.html">Относ1</a></li>
+                <li><a href="./about/what.html">Относ2</a></li>
+                <li><a href="../NZT.html">Назад в будущее</a></li>
+                <li><a href="../../NZT48.html">Жёстко Назад в будущее</a></li>
+                <li>Вот где-то тут должна быть ссылка, вот-вот будет, и... <a href="https://www.kubsu.ru/">Вооооот она!</a>Ураааа</li>
+                <li><a href="https://ru.wikipedia.org/wiki/HTML#Браузеры">Ссылка на фрагмент внешнего сайта</a></li>
+                <li>
+                    <img src="Chel.png" usemap="#totoro">
+                    <map name="totoro">
+                        <area shape="rect" coords="400,300,500,500" href="https://www.kubsu.ru/">
+                        <area shape="circle" coords="50,50,50" href="https://www.kubsu.ru/">  
+                    </map>
+                </li>
+                <li><a href="">Пустая</a></li>
+                <li><a>Совсем пустая</a></li>
+                <li><a href="https://www.kubsu.ru/" rel="nofollow">Нет поисковик1</a></li>
+                <li><a href="https://www.kubsu.ru/" rel="noindex">Нет поисковик2</a></li>
+                <li><a href=""></a></li>
+                
+                <ol>
+                    <li><a href="https://www.kubsu.ru/" title="1">Граф</a></li>
+                    <li><a href="https://www.kubsu.ru/" title="2">Монте</a></li>
+                    <li><a href="https://www.kubsu.ru/" title="3">Криста</a></li>
+                </ol>
+                
+                <li><a href="ftp://username:password@ftp.example.com/path/to/file.zip">Скачать файл</a></li>
+            </ul>
+        </div>
+
+        <!-- 3. ФОРМА (третья на мобильных) -->
+        <form action="" method="POST" class="tablu mobile-order-3">
             <h3>Форма</h3>
             <label>
                 Ваше ФИО
