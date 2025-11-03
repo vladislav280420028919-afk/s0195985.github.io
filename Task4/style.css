@@ -219,3 +219,17 @@ a:focus,
     outline: 2px solid #6385EF;
     outline-offset: 2px;
 }
+
+/* Управление порядком элементов для мобильных */
+@media (max-width: 767.98px) {
+    .mobile-order-1 { order: 1; } /* Таблица первая */
+    .mobile-order-2 { order: 2; } /* Список второй */
+    .mobile-order-3 { order: 3; } /* Форма третья */
+}
+
+/* Для планшетов и десктопов - обычный порядок */
+@media (min-width: 768px) {
+    .mobile-order-1 { order: 2; } /* Таблица вторая */
+    .mobile-order-2 { order: 1; } /* Список первый */
+    .mobile-order-3 { order: 3; } /* Форма третья */
+}
