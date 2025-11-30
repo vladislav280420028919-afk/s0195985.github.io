@@ -5,6 +5,8 @@ const feedbackForm = document.getElementById('feedbackForm');
 const messageContainer = document.getElementById('messageContainer');
 const submitBtn = document.getElementById('submitBtn');
 
+const FORMCARRY_FORM_ID = 't170gla_y2-';
+
 openModalBtn.addEventListener('click', function() {
     modalOverlay.classList.add('active');
     history.pushState({ modalOpen: true }, '', '#feedback');
@@ -49,8 +51,46 @@ function restoreFormData() {
     }
 }
 
+function validateForm() {
+    const fullName = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const privacyPolicy = document.getElementById('privacyPolicy').checked;
+    
+    if (!fullName) {
+        showMessage('Пожалуйста, введите ФИО', 'error');
+        return false;
+    }
+    
+    if (!email || !isValidEmail(email)) {
+        showMessage('Пожалуйста, введите корректный email', 'error');
+        return false;
+    }
+    
+    if (!message) {
+        showMessage('Пожалуйста, введите сообщение', 'error');
+        return false;
+    }
+    
+    if (!privacyPolicy) {
+        showMessage('Необходимо согласие с политикой обработки данных', 'error');
+        return false;
+    }
+    
+    return true;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 feedbackForm.addEventListener('submit', async function(e) {
     e.preventDefault();
+    
+    if (!validateForm()) {
+        return;
+    }
     
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка...';
@@ -62,27 +102,30 @@ feedbackForm.addEventListener('submit', async function(e) {
         phone: formData.get('phone'),
         organization: formData.get('organization'),
         message: formData.get('message'),
-        privacyPolicy: formData.get('privacyPolicy')
+        privacyPolicy: formData.get('privacyPolicy') ? 'Да' : 'Нет'
     };
     
     try {
-        const response = await fetch('https://api.slapform.com/your-form-id', {
+        const response = await fetch(`https://formcarry.com/s/${FORMCARRY_FORM_ID}`, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
         });
         
-        if (response.ok) {
+        const result = await response.json();
+        
+        if (response.ok && result.code === 200) {
             showMessage('Ваше сообщение успешно отправлено!', 'success');
             feedbackForm.reset();
             localStorage.removeItem('feedbackFormData');
         } else {
-            throw new Error('Ошибка отправки формы');
+            throw new Error(result.message || 'Ошибка отправки формы');
         }
     } catch (error) {
-        showMessage('Произошла ошибка при отправке формы. Пожалуйста, попробуйте еще раз.', 'error');
+        showMessage('Произошла ошибка при отправке формы: ' + error.message, 'error');
         console.error('Ошибка:', error);
     } finally {
         submitBtn.disabled = false;
